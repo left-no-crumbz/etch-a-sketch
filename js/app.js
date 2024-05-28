@@ -1,5 +1,5 @@
 
-const gridContainer = document.querySelector(".container");
+const gridContainer = document.querySelector(".grid-container");
 for (let i = 0; i < 16; i++){
     // create rows
     let columns = document.createElement("div");
@@ -8,7 +8,7 @@ for (let i = 0; i < 16; i++){
         // create columns
         let cell = document.createElement("div");
         cell.style.padding = "1rem";
-        cell.style.border = "2px solid #aaa";
+        // cell.style.border = "2px solid black";
         columns.appendChild(cell);
         cell.classList.toggle("cell");
     }

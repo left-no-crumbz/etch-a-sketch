@@ -4,11 +4,22 @@
     box-sizing: border-box;
 }
 
-.container {
+
+.frame {
+    padding: 1.2rem;
+    text-align: center;
+    max-width: fit-content;
+    background-color: red;
+}
+
+.grid-container {
     display: flex;
-    min-width: 1000px;
     justify-content: center;
     align-items: center;
+}
+
+.cell {
+    background-color: white;
 }
 
 .cell:hover {
