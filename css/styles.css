@@ -4,6 +4,17 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    gap: 3rem;
+}
 
 .frame {
     padding: 1.2rem;
@@ -24,4 +35,10 @@
 
 .cell:hover {
     background-color: black;
+}
+
+.sidebar {
+    align-self: stretch;
+    padding: 10rem;
+    border: 3px solid black;
 }
