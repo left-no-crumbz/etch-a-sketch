@@ -24,3 +24,4 @@ for (let i = 0; i < 16; i++){
 bgClrPicker.addEventListener("input", (event) => {
     body.style.backgroundColor = event.target.value;
 });
+
