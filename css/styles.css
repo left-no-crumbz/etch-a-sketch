@@ -5,9 +5,10 @@
 }
 
 body {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    background-color: #1e2124;
 }
 .container {
     display: flex;
@@ -20,7 +21,7 @@ body {
     padding: 1.2rem;
     text-align: center;
     max-width: fit-content;
-    background-color: red;
+    box-shadow: 10px;
 }
 
 .grid-container {
@@ -38,7 +39,7 @@ body {
 }
 
 .sidebar {
-    align-self: stretch;
+    align-self: flex-start;
     padding: 10rem;
     border: 3px solid black;
 }
