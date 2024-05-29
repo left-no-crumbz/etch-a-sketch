@@ -7,7 +7,7 @@ for (let i = 0; i < 16; i++){
     for (let j = 0; j < 16; j++){
         // create columns
         let cell = document.createElement("div");
-        cell.style.padding = "1rem";
+        cell.style.padding = ".84rem";
         // cell.style.border = "2px solid black";
         columns.appendChild(cell);
         cell.classList.toggle("cell");

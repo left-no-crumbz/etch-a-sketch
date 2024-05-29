@@ -1,29 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+html,
 body {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     background-color: #1e2124;
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    flex: 1;
+}
+
+h1, 
+footer {
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    /* margin: 1rem 0; */
+}
+
+
+footer {
+    /* margin-top: auto; */
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    background-color: #7289da;
+    justify-content: center;
+    align-items: center;
 }
 .container {
     display: flex;
     justify-self: center;
     align-items: center;
     gap: 3rem;
+    margin: auto;
 }
 
-.frame {
-    padding: 1.2rem;
-    text-align: center;
-    max-width: fit-content;
-}
+
 
 .grid-container {
+    max-width: 980px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +67,7 @@ body {
 }
 
 .sidebar {
+    background-color: #424549;
     align-self: flex-start;
     padding: 10rem;
-    border: 3px solid black;
 }
