@@ -2,6 +2,8 @@
 const gridContainer = document.querySelector(".grid-container");
 const bgClrPicker = document.querySelector("#bg-clr-picker");
 const penClrPicker = document.querySelector("#pen-clr-picker");
+const body = document.querySelector("body");
+let penClr = penClrPicker.value;
 
 let isClicked = false;
 function createGrid(width, height) {
@@ -21,18 +23,21 @@ function createGrid(width, height) {
 
 createGrid(16, 16);
 
-function draw(event) {
-    const target = event.target;
-    if (target.classList.contains("cell") && isClicked){
-        target.style.backgroundColor = "black";
-    }
-
-}
 
 gridContainer.addEventListener("mouseover", draw);
 gridContainer.addEventListener("mousedown", () => {isClicked = true;});
 gridContainer.addEventListener("mouseup", () => {isClicked = false;});
 
-bgClrPicker.addEventListener("input", (event) => {
-    body.style.backgroundColor = event.target.value;
+bgClrPicker.addEventListener("input", (event) => {body.style.backgroundColor = event.target.value;});
+
+penClrPicker.addEventListener("input", (event) => {
+    console.log(penClr);
+    penClr = event.target.value;
 });
+function draw(event) {
+    const target = event.target;
+    if (target.classList.contains("cell") && isClicked){
+        target.style.backgroundColor = penClr;
+    }
+
+}
