@@ -36,18 +36,18 @@ body {
     background-color: var(--bg-clr);
     font-family: "Space Mono", monospace;
     font-weight: 400;
-}
-
-
-h1, 
-footer {
-    text-align: center;
     color: white;
 }
 
-
-
+.title {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
 footer {
+    text-align: center;
     width: 100%;
     padding: .7rem;
     background-color: var(--ftr-clr);

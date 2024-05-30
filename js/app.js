@@ -40,16 +40,17 @@ penClrPicker.addEventListener("input", (event) => {
     console.log(penClr);
     penClr = event.target.value;
 });
-// TODO:
-// - turn rainbow button into a toggle
-// - use event delegation in the sidebar for perf
+
 rainbowBtn.addEventListener("click", (event)=>{
     console.log(rainbowMode);
     if(rainbowMode) {
         rainbowMode = false;
         event.target.style.border = "0";
+        shadingBtn.disabled = false;
     } else {
         rainbowMode = true;
+        shadingBtn.disabled = true;
+        shadingBtn.style.cursor = "not allowed";
         event.target.style.border = "1px solid #7289da";
     }
 });
@@ -58,8 +59,11 @@ shadingBtn.addEventListener("click", (event)=>{
     if(shadingMode) {
         shadingMode = false;
         event.target.style.border = "0";
+        rainbowBtn.disabled = false;
     } else {        
         shadingMode = true;
+        rainbowBtn.disabled = true;
+        rainbowBtn.cursor = "not allowed";
         event.target.style.border = "1px solid #7289da";
     }
 });
