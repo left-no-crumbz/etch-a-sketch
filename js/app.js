@@ -5,7 +5,7 @@ const penClrPicker = document.querySelector("#pen-clr-picker");
 const body = document.querySelector("#body");
 const rainbowBtn = document.querySelector("#rainbow");
 const shadingBtn = document.querySelector("#shading");
-
+const sidebar = document.querySelector(".sidebar");
 
 let penClr = penClrPicker.value;
 let rainbowMode = false;
@@ -47,10 +47,11 @@ rainbowBtn.addEventListener("click", (event)=>{
         rainbowMode = false;
         event.target.style.border = "0";
         shadingBtn.disabled = false;
+        shadingBtn.style.cursor = "pointer";
     } else {
         rainbowMode = true;
         shadingBtn.disabled = true;
-        shadingBtn.style.cursor = "not allowed";
+        shadingBtn.style.cursor = "not-allowed";
         event.target.style.border = "1px solid #7289da";
     }
 });
@@ -60,10 +61,11 @@ shadingBtn.addEventListener("click", (event)=>{
         shadingMode = false;
         event.target.style.border = "0";
         rainbowBtn.disabled = false;
+        rainbowBtn.style.cursor = "pointer";
     } else {        
         shadingMode = true;
         rainbowBtn.disabled = true;
-        rainbowBtn.cursor = "not allowed";
+        rainbowBtn.style.cursor = "not-allowed";
         event.target.style.border = "1px solid #7289da";
     }
 });
