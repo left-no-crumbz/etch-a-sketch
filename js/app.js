@@ -3,25 +3,37 @@ const gridContainer = document.querySelector(".grid-container");
 const body = document.querySelector("body");
 
 const bgClrPicker = document.querySelector("#bg-clr-picker");
+const penClrPicker = document.querySelector("#pen-clr-picker");
 
+const cell = document.querySelectorAll(".cell");
+function draw(event) {
+    console.log(`Mouse entered ${event.target}`)         
+}
 
-for (let i = 0; i < 16; i++){
-    // create rows
-    let columns = document.createElement("div");
-    columns.classList.toggle("columns");
-    for (let j = 0; j < 16; j++){
+function createGrid(width, height) {
+    for (let i = 0; i < width; i++){
         // create columns
-        let cell = document.createElement("div");
-        cell.style.padding = ".84rem";
-        // cell.style.border = "2px solid black";
-        columns.appendChild(cell);
-        cell.classList.toggle("cell");
+        let row = document.createElement("div");
+        row.classList.toggle("row");
+        for (let j = 0; j < height; j++){
+            // create rows
+            let cell = document.createElement("div");
+            
+            
+            // MY CURRENT SOLUTION FOR HOVERING:
+            // put an id to each cell and then color them black.
+            // cell.style.border = "2px solid black";
+            row.appendChild(cell);
+            cell.classList.toggle("cell");
+        }
+        gridContainer.appendChild(row);
     }
-    gridContainer.appendChild(columns);
 }
 
 
+gridContainer.addEventListener("mouseenter", draw);
 bgClrPicker.addEventListener("input", (event) => {
     body.style.backgroundColor = event.target.value;
 });
 
+createGrid(16, 16);
