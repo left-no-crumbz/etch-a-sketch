@@ -39,17 +39,24 @@ penClrPicker.addEventListener("input", (event) => {
 });
 
 rainbowBtn.addEventListener("click", ()=>{
-    rainbowMode = true;
+    console.log(rainbowMode);
+    if(rainbowMode) {
+        rainbowMode = false;
+    } else {
+        rainbowMode = true;
+    }
 });
 function draw(event) {
     const target = event.target;
-    if (target.classList.contains("cell") && isClicked && !rainbowMode){
+    let cellIsClicked = target.classList.contains("cell") && isClicked;
+    if (cellIsClicked && !rainbowMode){
         target.style.backgroundColor = penClr;
-    } else if(target.classList.contains("cell") && isClicked && rainbowMode) {
-        let r = Math.floor(Math.random() * 255);
-        let g = Math.floor(Math.random() * 255);
-        let b = Math.floor(Math.random() * 255);
-        console.log(target);
+    } else if(cellIsClicked && rainbowMode) {
+        const MAX = 256;
+        const MIN = 0;
+        let r = Math.floor(Math.random() * (MAX - MIN) + MIN);
+        let g = Math.floor(Math.random() * (MAX - MIN) + MIN);
+        let b = Math.floor(Math.random() * (MAX - MIN) + MIN);
         console.log(r);
         console.log(g);
         console.log(b);
