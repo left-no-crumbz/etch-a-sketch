@@ -37,13 +37,17 @@ penClrPicker.addEventListener("input", (event) => {
     console.log(penClr);
     penClr = event.target.value;
 });
-
+// TODO:
+// - turn rainbow button into a toggle
+// - use event delegation in the sidebar for perf
 rainbowBtn.addEventListener("click", ()=>{
     console.log(rainbowMode);
     if(rainbowMode) {
         rainbowMode = false;
+        event.target.style.border = "0";
     } else {
         rainbowMode = true;
+        event.target.style.border = "1px solid white";
     }
 });
 function draw(event) {
