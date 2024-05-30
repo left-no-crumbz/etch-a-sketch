@@ -1,11 +1,14 @@
 
-const gridContainer = document.querySelector(".grid-container");
+const gridContainer = document.querySelector("#grid-container");
 const bgClrPicker = document.querySelector("#bg-clr-picker");
 const penClrPicker = document.querySelector("#pen-clr-picker");
-const body = document.querySelector("body");
-let penClr = penClrPicker.value;
+const body = document.querySelector("#body");
+const rainbowBtn = document.querySelector("#rainbow");
 
+let penClr = penClrPicker.value;
+let rainbowMode = false;
 let isClicked = false;
+
 function createGrid(width, height) {
     let fragment = document.createDocumentFragment();
     for (let i = 0; i < width; i++){
@@ -21,7 +24,7 @@ function createGrid(width, height) {
     gridContainer.appendChild(fragment);
 }
 
-createGrid(16, 16);
+createGrid(32, 32);
 
 
 gridContainer.addEventListener("mouseover", draw);
@@ -34,10 +37,23 @@ penClrPicker.addEventListener("input", (event) => {
     console.log(penClr);
     penClr = event.target.value;
 });
+
+rainbowBtn.addEventListener("click", ()=>{
+    rainbowMode = true;
+});
 function draw(event) {
     const target = event.target;
-    if (target.classList.contains("cell") && isClicked){
+    if (target.classList.contains("cell") && isClicked && !rainbowMode){
         target.style.backgroundColor = penClr;
+    } else if(target.classList.contains("cell") && isClicked && rainbowMode) {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        console.log(target);
+        console.log(r);
+        console.log(g);
+        console.log(b);
+        target.style.backgroundColor = `rgb(${r},${g},${b})`;
     }
 
 }
