@@ -85,10 +85,14 @@ footer {
 .cell {
     background-color: white;
     flex: auto;
+    opacity: 1;
 }
 
 
 .sidebar {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 8px;
     max-width: 300px;
     min-height: 450px;
     background-color: var(--sb-clr);
@@ -104,6 +108,7 @@ footer {
     cursor: pointer;
     background-color: var(--sb-clr);
     flex-shrink: 0;
+
 }
 
 label {
@@ -114,15 +119,20 @@ label {
     color: white;
 }
 
-#rainbow {
+#rainbow,
+#shading {
     padding: 1em 2.5em;
     background-color: var(--bg-clr);
     color: white;
     border-radius: 1em;
     position: relative;
+    flex-grow: 0;
+    cursor: pointer;
+    font-family: inherit;
 }
 
-#rainbow:hover {
-    border: 1px solid white;
+#rainbow:hover,
+#shading:hover {
+    border: 1px solid var(--ftr-clr);
 }
 

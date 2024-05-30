@@ -4,10 +4,13 @@ const bgClrPicker = document.querySelector("#bg-clr-picker");
 const penClrPicker = document.querySelector("#pen-clr-picker");
 const body = document.querySelector("#body");
 const rainbowBtn = document.querySelector("#rainbow");
+const shadingBtn = document.querySelector("#shading");
+
 
 let penClr = penClrPicker.value;
 let rainbowMode = false;
 let isClicked = false;
+let shadingMode = false; 
 
 function createGrid(width, height) {
     let fragment = document.createDocumentFragment();
@@ -40,20 +43,31 @@ penClrPicker.addEventListener("input", (event) => {
 // TODO:
 // - turn rainbow button into a toggle
 // - use event delegation in the sidebar for perf
-rainbowBtn.addEventListener("click", ()=>{
+rainbowBtn.addEventListener("click", (event)=>{
     console.log(rainbowMode);
     if(rainbowMode) {
         rainbowMode = false;
         event.target.style.border = "0";
     } else {
         rainbowMode = true;
-        event.target.style.border = "1px solid white";
+        event.target.style.border = "1px solid #7289da";
     }
 });
+
+shadingBtn.addEventListener("click", (event)=>{
+    if(shadingMode) {
+        shadingMode = false;
+        event.target.style.border = "0";
+    } else {        
+        shadingMode = true;
+        event.target.style.border = "1px solid #7289da";
+    }
+});
+
 function draw(event) {
     const target = event.target;
     let cellIsClicked = target.classList.contains("cell") && isClicked;
-    if (cellIsClicked && !rainbowMode){
+    if (cellIsClicked && !rainbowMode && !shadingMode){
         target.style.backgroundColor = penClr;
     } else if(cellIsClicked && rainbowMode) {
         const MAX = 256;
@@ -61,10 +75,14 @@ function draw(event) {
         let r = Math.floor(Math.random() * (MAX - MIN) + MIN);
         let g = Math.floor(Math.random() * (MAX - MIN) + MIN);
         let b = Math.floor(Math.random() * (MAX - MIN) + MIN);
-        console.log(r);
-        console.log(g);
-        console.log(b);
         target.style.backgroundColor = `rgb(${r},${g},${b})`;
+    } else if (cellIsClicked && shadingMode && !rainbowMode){
+        target.style.backgroundColor = penClr;
+        if (target.style.opacity >= 0.1) {
+            target.style.opacity = +target.style.opacity + 0.1;
+        } else {
+            target.style.opacity = 0.1;
+        }
     }
 
 }
