@@ -9,18 +9,12 @@ let isClicked = false;
 
 
 function createGrid(width, height) {
+    let fragment = document.createDocumentFragment();
     for (let i = 0; i < width; i++){
-        // create columns
         let row = document.createElement("div");
         row.classList.toggle("row");
         for (let j = 0; j < height; j++){
-            // create rows
             let cell = document.createElement("div");
-            
-            
-            // MY CURRENT SOLUTION FOR HOVERING:
-            // put an id to each cell and then color them black.
-            // cell.style.border = "2px solid black";
             row.appendChild(cell);
             cell.classList.toggle("cell");
             cell.addEventListener("mouseover", draw);
@@ -35,11 +29,12 @@ function createGrid(width, height) {
                 }
             })
         }
-        gridContainer.appendChild(row);
+        fragment.appendChild(row);
     }
+    gridContainer.appendChild(fragment);
 }
 
-createGrid(16, 16);
+createGrid(100, 100);
 
 const cell = document.querySelectorAll(".cell");
 function draw(event) {
