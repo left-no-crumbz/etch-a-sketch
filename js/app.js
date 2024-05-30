@@ -29,46 +29,49 @@ function createGrid(width, height) {
 
 createGrid(32, 32);
 
+sidebar.addEventListener("input", (event) => {
+    target = event.target;
+    if(target.id == "bg-clr-picker"){
+        body.style.backgroundColor = target.value
+    } else if (target.id === "pen-clr-picker"){
+        penClr = target.value;
+    }
+});
+
+sidebar.addEventListener("click", (event) => {
+    const target = event.target;
+    console.log(target.id);
+    if(target.id === "rainbow"){
+        if(rainbowMode) {
+            rainbowMode = false;
+            target.style.border = "0";
+            shadingBtn.disabled = false;
+            shadingBtn.style.cursor = "pointer";
+        } else {
+            rainbowMode = true;
+            shadingBtn.disabled = true;
+            shadingBtn.style.cursor = "not-allowed";
+            target.style.border = "1px solid #7289da";
+        }
+    } else if (target.id === "shading") {
+        if(shadingMode) {
+            shadingMode = false;
+            target.style.border = "0";
+            rainbowBtn.disabled = false;
+            rainbowBtn.style.cursor = "pointer";
+        } else {        
+            shadingMode = true;
+            rainbowBtn.disabled = true;
+            rainbowBtn.style.cursor = "not-allowed";
+            target.style.border = "1px solid #7289da";
+        }
+    }
+});
 
 gridContainer.addEventListener("mouseover", draw);
 gridContainer.addEventListener("mousedown", () => {isClicked = true;});
 gridContainer.addEventListener("mouseup", () => {isClicked = false;});
 
-bgClrPicker.addEventListener("input", (event) => {body.style.backgroundColor = event.target.value;});
-
-penClrPicker.addEventListener("input", (event) => {
-    console.log(penClr);
-    penClr = event.target.value;
-});
-
-rainbowBtn.addEventListener("click", (event)=>{
-    console.log(rainbowMode);
-    if(rainbowMode) {
-        rainbowMode = false;
-        event.target.style.border = "0";
-        shadingBtn.disabled = false;
-        shadingBtn.style.cursor = "pointer";
-    } else {
-        rainbowMode = true;
-        shadingBtn.disabled = true;
-        shadingBtn.style.cursor = "not-allowed";
-        event.target.style.border = "1px solid #7289da";
-    }
-});
-
-shadingBtn.addEventListener("click", (event)=>{
-    if(shadingMode) {
-        shadingMode = false;
-        event.target.style.border = "0";
-        rainbowBtn.disabled = false;
-        rainbowBtn.style.cursor = "pointer";
-    } else {        
-        shadingMode = true;
-        rainbowBtn.disabled = true;
-        rainbowBtn.style.cursor = "not-allowed";
-        event.target.style.border = "1px solid #7289da";
-    }
-});
 
 function draw(event) {
     const target = event.target;
