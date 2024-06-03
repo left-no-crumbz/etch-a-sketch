@@ -27,7 +27,7 @@ slider.addEventListener("input", getGridSize);
 function displayGridSize(size){
 	value.textContent = `${size}x${size}`;
 }
-function getGridSize () {
+function getGridSize() {
 	const gridSize = slider.value;
 	// value.textContent = `${gridSize}x${gridSize}`;
 	displayGridSize(gridSize);
@@ -95,6 +95,9 @@ function handleSidebarClick(event) {
 			break;
 		case "eraser":
 			toggleEraseMode(!eraseMode);
+			break;
+		case "clear":
+			getGridSize();
 			break;
 		default:
 			break;

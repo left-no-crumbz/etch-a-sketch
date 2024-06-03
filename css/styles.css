@@ -121,8 +121,9 @@ footer {
 
 #rainbow,
 #shading,
-#eraser {
-    padding: 1em 2.5em;
+#eraser,
+#clear {
+    padding: .7em 2.5em;
     background-color: var(--bg-clr);
     color: white;
     border-radius: 1em;
@@ -135,6 +136,14 @@ footer {
 
 #rainbow:hover,
 #shading:hover,
-#eraser:hover {
+#eraser:hover,
+#clear:hover {
     border: 1px solid var(--ftr-clr);
+}
+
+
+#grid-size {
+    accent-color: var(--ftr-clr);
+    border: 0;
+    cursor: pointer;
 }
