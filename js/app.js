@@ -1,6 +1,7 @@
 const gridContainer = document.getElementById("grid-container");
 const bgClrPicker = document.getElementById("bg-clr-picker");
 const penClrPicker = document.getElementById("pen-clr-picker");
+const html = document.getElementById("html");
 const body = document.getElementById("body");
 const rainbowBtn = document.getElementById("rainbow");
 const shadingBtn = document.getElementById("shading");
@@ -85,6 +86,8 @@ function handleSidebarClick(event) {
 	const { target } = event;
 	const { id } = target;
 
+	console.log(target);
+	console.log(id);
 	switch (id) {
 		case "rainbow":
 			toggleRainbowMode(!rainbowMode);
@@ -105,10 +108,13 @@ function handleSidebarClick(event) {
 
 sidebar.addEventListener("click", handleSidebarClick);
 
+
 sidebar.addEventListener("input", (event) => {
 	target = event.target;
 	if (target.id === "bg-clr-picker") {
+		html.style.backgroundColor = target.value;
 		body.style.backgroundColor = target.value;
+
 	} else if (target.id === "pen-clr-picker") {
 		penClr = target.value;
 	}
@@ -120,6 +126,26 @@ gridContainer.addEventListener("mousedown", () => {
 });
 gridContainer.addEventListener("mouseup", () => {
 	clicked = false;
+});
+
+gridContainer.addEventListener("touchmove", (event) => {
+	event.preventDefault();
+	const touch = event.touches[0];
+	const element = document.elementFromPoint(touch.clientX, touch.clientY);
+	if (element?.matches(".cell") && clicked) {
+		draw({target: element});
+	}
+
+}, {passive: false});
+
+
+gridContainer.addEventListener("touchstart", () => {
+	clicked = true;
+	console.log(clicked);
+});
+gridContainer.addEventListener("touchend", () => {
+	clicked = false;
+	console.log(clicked);
 });
 
 function draw(event) {
