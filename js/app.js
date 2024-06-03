@@ -25,11 +25,10 @@ displayGridSize(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
 slider.addEventListener("input", getGridSize);
 
 function displayGridSize(size){
-	value.textContent = `${size}x${size}`;
+	value.textContent = `Grid size: ${size}x${size}`;
 }
 function getGridSize() {
 	const gridSize = slider.value;
-	// value.textContent = `${gridSize}x${gridSize}`;
 	displayGridSize(gridSize);
 	clearGrid();
 	createGrid(gridSize, gridSize);
