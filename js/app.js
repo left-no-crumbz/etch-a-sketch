@@ -1,12 +1,15 @@
-const gridContainer = document.querySelector("#grid-container");
-const bgClrPicker = document.querySelector("#bg-clr-picker");
-const penClrPicker = document.querySelector("#pen-clr-picker");
-const body = document.querySelector("#body");
-const rainbowBtn = document.querySelector("#rainbow");
-const shadingBtn = document.querySelector("#shading");
-const eraseBtn = document.querySelector("#eraser");
-const sidebar = document.querySelector(".sidebar");
+const gridContainer = document.getElementById("grid-container");
+const bgClrPicker = document.getElementById("bg-clr-picker");
+const penClrPicker = document.getElementById("pen-clr-picker");
+const body = document.getElementById("body");
+const rainbowBtn = document.getElementById("rainbow");
+const shadingBtn = document.getElementById("shading");
+const eraseBtn = document.getElementById("eraser");
+const sidebar = document.getElementById("sidebar");
 const bytes = new Uint32Array(1);
+const slider = document.getElementById("grid-size");
+const value = document.getElementById("value");
+
 
 let penClr = penClrPicker.value;
 let rainbowMode = false;
@@ -18,11 +21,11 @@ function createGrid(width, height) {
 	const fragment = document.createDocumentFragment();
 	for (let i = 0; i < width; i++) {
 		const row = document.createElement("div");
-		row.classList.toggle("row");
+		row.classList.add("row");
 		for (let j = 0; j < height; j++) {
 			const cell = document.createElement("div");
 			row.appendChild(cell);
-			cell.classList.toggle("cell");
+			cell.classList.add("cell");
 		}
 		fragment.appendChild(row);
 	}
