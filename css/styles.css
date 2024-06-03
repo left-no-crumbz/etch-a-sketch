@@ -27,33 +27,37 @@ body {
 }
 
 .title {
-    width: 100%;
     margin-top: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .5em;
 }
+
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     width: 100%;
-    padding: .7rem;
+    height: 50px;
     background-color: var(--ftr-clr);
+    gap: 1em;
 }
 
 .container {
+    margin: 2em;
     display: flex;
     justify-self: center;
     align-items: center;
     gap: 3rem;
     flex: auto;
-    flex-wrap: wrap;
 }
 
 
 
 .grid-container {
     flex-flow: column wrap;
+    min-width: 450px;
     min-height: 450px;
     display: flex;
     justify-content: stretch;
@@ -165,47 +169,106 @@ a:hover {
     text-decoration: underline;
 }
 
-@media (min-width: 375px) {
+@media (min-width: 360px) {
+    .container {
+        flex-flow: column wrap;
+    }
+
     .container,
     .title {
         max-width: 375px;
     }
+    .grid-container,
+    .row {
+        min-width: 300px;
+    }
     .grid-container {
-        min-width: calc(375px / 2);
+        min-height: 300px;
     }
 }
 
 @media (min-width: 640px) {
+    .container {
+        flex-flow: column wrap;
+    }
     .container,
     .title {
         max-width: 640px;
     }
+    .grid-container,
+    .row {
+        min-width: 450px;
+    }
+    .grid-container {
+        min-height: 450px;
+    }
 }
 
 @media (min-width: 768px) {
+    .container {
+        flex-flow: column wrap;
+    }
     .container,
     .title {
         max-width: 768px;
+    }
+    .grid-container,
+    .row {
+        min-width: 450px;
+    }
+    .grid-container {
+        min-height: 450px;
     }
 }
 
 @media (min-width: 1024px) {
+    .container {
+        flex-flow: column wrap;
+    }
     .container,
     .title {
         max-width: 1024px;
     }
+    .grid-container,
+    .row {
+        min-width: 450px;
+    }
+    .grid-container {
+        min-height: 450px;
+    }
 }
 
 @media (min-width: 1280px) {
+    .container {
+        flex-flow: row wrap;
+    }
     .container,
     .title {
         max-width: 1280px;
     }
+    .grid-container,
+    .row {
+        min-width: 450px;
+    }
+    .grid-container {
+        min-height: 450px;
+    }
+
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1536px) {
+    .container {
+        flex-flow: row wrap;
+    }
     .container,
     .title {
-        max-width: 768px;
+        max-width: 1536px;
+    }
+    .grid-container,
+    .row {
+        min-width: 450px;
+    }
+    .grid-container {
+        min-height: 450px;
     }
 }
