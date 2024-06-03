@@ -31,6 +31,49 @@ function createGrid(width, height) {
 
 createGrid(16, 16);
 
+
+function toggleRainbowMode(enabled) {
+    rainbowMode = enabled;
+    shadingBtn.disabled = eraseBtn.disabled = enabled;
+    shadingBtn.style.cursor = eraseBtn.style.cursor = enabled ? 'not-allowed' : 'pointer';
+    rainbowBtn.style.border = enabled ? '1px solid #7289da' : '';
+}
+
+function toggleShadingMode(enabled) {
+    shadingMode = enabled;
+    rainbowBtn.disabled = eraseBtn.disabled = enabled;
+    rainbowBtn.style.cursor = eraseBtn.style.cursor = enabled ? 'not-allowed' : 'pointer';
+    shadingBtn.style.border = enabled ? '1px solid #7289da' : '';
+}
+
+function toggleEraseMode(enabled) {
+    eraseMode = enabled;
+    rainbowBtn.disabled = shadingBtn.disabled = enabled;
+    rainbowBtn.style.cursor = shadingBtn.style.cursor = enabled ? 'not-allowed' : 'pointer';
+    eraseBtn.style.border = enabled ? '1px solid #7289da' : '';
+}
+
+function handleSidebarClick(event) {
+    const { target } = event;
+    const { id } = target;
+    
+    switch (id) {
+        case 'rainbow':
+            toggleRainbowMode(!rainbowMode);
+            break;
+        case 'shading':
+            toggleShadingMode(!shadingMode);
+            break;
+        case 'eraser':
+            toggleEraseMode(!eraseMode);
+            break;
+        default:
+            break;
+    }
+}
+  
+sidebar.addEventListener('click', handleSidebarClick);
+
 sidebar.addEventListener("input", (event) => {
     target = event.target;
     if(target.id == "bg-clr-picker"){
@@ -40,59 +83,6 @@ sidebar.addEventListener("input", (event) => {
     }
 });
 
-sidebar.addEventListener("click", (event) => {
-    const target = event.target;
-    console.log(target.id);
-    if(target.id === "rainbow"){
-        if(rainbowMode) {
-            rainbowMode = false;
-            target.style.border = "0";
-            shadingBtn.disabled = false;
-            shadingBtn.style.cursor = "pointer";
-            eraseBtn.disabled = false;
-            eraseBtn.style.cursor = "pointer";
-        } else {
-            rainbowMode = true;
-            shadingBtn.disabled = true;
-            shadingBtn.style.cursor = "not-allowed";
-            eraseBtn.disabled = true;
-            eraseBtn.style.cursor = "not-allowed";
-            target.style.border = "1px solid #7289da";
-        }
-    } else if (target.id === "shading") {
-        if(shadingMode) {
-            shadingMode = false;
-            target.style.border = "0";
-            rainbowBtn.disabled = false;
-            rainbowBtn.style.cursor = "pointer";
-            eraseBtn.disabled = false;
-            eraseBtn.style.cursor = "pointer";
-        } else {        
-            shadingMode = true;
-            rainbowBtn.disabled = true;
-            rainbowBtn.style.cursor = "not-allowed";
-            eraseBtn.disabled = true;
-            eraseBtn.style.cursor = "not-allowed";
-            target.style.border = "1px solid #7289da";
-        }
-    } else if (target.id === "eraser") {
-        if(eraseMode){
-            eraseMode = false;
-            target.style.border = "0";
-            rainbowBtn.disabled = false;
-            rainbowBtn.style.cursor = "pointer";
-            shadingBtn.disabled = false;
-            shadingBtn.style.cursor = "pointer";
-        } else {
-            eraseMode = true;
-            rainbowBtn.disabled = true;
-            rainbowBtn.style.cursor = "not-allowed";
-            shadingBtn.disabled = true;
-            shadingBtn.style.cursor = "not-allowed";
-            target.style.border = "1px solid #7289da";
-        }
-    }
-});
 
 gridContainer.addEventListener("mouseover", draw);
 gridContainer.addEventListener("mousedown", () => {clicked = true;});
@@ -101,7 +91,9 @@ gridContainer.addEventListener("mouseup", () => {clicked = false;});
 
 function draw(event) {
     const target = event.target;
+
     let cellIsClicked = target.classList.contains("cell") && clicked;
+    // TODO: clean this up
     if (cellIsClicked && !rainbowMode && !shadingMode && !eraseMode){
         target.style.backgroundColor = penClr;
     } else if(cellIsClicked && rainbowMode) {
