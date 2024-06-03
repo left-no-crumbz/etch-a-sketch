@@ -17,11 +17,20 @@ let clicked = false;
 let shadingMode = false;
 let eraseMode = false;
 const DEFAULT_GRID_SIZE = 16;
+
 createGrid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
+displayGridSize(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
+
+
 slider.addEventListener("input", getGridSize);
+
+function displayGridSize(size){
+	value.textContent = `${size}x${size}`;
+}
 function getGridSize () {
 	const gridSize = slider.value;
-	value.textContent = `${gridSize}x${gridSize}`
+	// value.textContent = `${gridSize}x${gridSize}`;
+	displayGridSize(gridSize);
 	clearGrid();
 	createGrid(gridSize, gridSize);
 }
@@ -29,6 +38,7 @@ function getGridSize () {
 function clearGrid() {
 	gridContainer.innerHTML = "";
 }
+
 function createGrid(width, height) {
 	const fragment = document.createDocumentFragment();
 	for (let i = 0; i < width; i++) {
