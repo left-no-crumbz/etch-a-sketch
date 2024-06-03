@@ -150,7 +150,17 @@ footer {
 }
 
 #grid-size {
+    height: 3.5px;
     accent-color: var(--ftr-clr);
-    border: 0;
     cursor: pointer;
+    border-radius: 2px;
 }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+} 
