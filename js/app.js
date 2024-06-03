@@ -16,7 +16,19 @@ let rainbowMode = false;
 let clicked = false;
 let shadingMode = false;
 let eraseMode = false;
+const DEFAULT_GRID_SIZE = 16;
+createGrid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
+slider.addEventListener("input", getGridSize);
+function getGridSize () {
+	const gridSize = slider.value;
+	value.textContent = `${gridSize}x${gridSize}`
+	clearGrid();
+	createGrid(gridSize, gridSize);
+}
 
+function clearGrid() {
+	gridContainer.innerHTML = "";
+}
 function createGrid(width, height) {
 	const fragment = document.createDocumentFragment();
 	for (let i = 0; i < width; i++) {
@@ -32,7 +44,6 @@ function createGrid(width, height) {
 	gridContainer.appendChild(fragment);
 }
 
-createGrid(16, 16);
 
 function toggleRainbowMode(enabled) {
 	rainbowMode = enabled;
