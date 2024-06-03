@@ -27,11 +27,12 @@ body {
 }
 
 .title {
+    width: 100%;
     margin-top: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1em;
+    gap: .5em;
 }
 footer {
     text-align: center;
@@ -46,20 +47,19 @@ footer {
     align-items: center;
     gap: 3rem;
     flex: auto;
+    flex-wrap: wrap;
 }
 
 
 
 .grid-container {
     flex-flow: column wrap;
-    max-width: 450px;
     min-height: 450px;
     display: flex;
     justify-content: stretch;
     align-items: center;
     box-shadow: 5px 5px 5px #00000033;
-    flex: 0 0 100%;
-
+    flex: 1 1 auto;
 }
 
 .row {
@@ -163,4 +163,49 @@ a {
 
 a:hover {
     text-decoration: underline;
-} 
+}
+
+@media (min-width: 375px) {
+    .container,
+    .title {
+        max-width: 375px;
+    }
+    .grid-container {
+        min-width: calc(375px / 2);
+    }
+}
+
+@media (min-width: 640px) {
+    .container,
+    .title {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container,
+    .title {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container,
+    .title {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container,
+    .title {
+        max-width: 1280px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container,
+    .title {
+        max-width: 768px;
+    }
+}
