@@ -122,6 +122,21 @@ gridContainer.addEventListener("mouseup", () => {
 	clicked = false;
 });
 
+gridContainer.addEventListener("touchstart", (event) => {
+	event.preventDefault(); // Prevent scrolling on touch devices
+	clicked = true;
+	draw(event);
+});
+
+gridContainer.addEventListener("touchmove", (event) => {
+event.preventDefault(); // Prevent scrolling on touch devices
+draw(event);
+});
+
+gridContainer.addEventListener("touchend", () => {
+clicked = false;
+});
+
 function draw(event) {
 	let targetElement;
 	let cellIsClicked = false;
