@@ -122,71 +122,26 @@ gridContainer.addEventListener("mouseup", () => {
 	clicked = false;
 });
 
-gridContainer.addEventListener("touchstart", (event) => {
-	event.preventDefault(); // Prevent scrolling on touch devices
-	clicked = true;
-	draw(event);
-});
-
-gridContainer.addEventListener("touchmove", (event) => {
-event.preventDefault(); // Prevent scrolling on touch devices
-draw(event);
-});
-
-gridContainer.addEventListener("touchend", () => {
-clicked = false;
-});
-
 function draw(event) {
-	let targetElement;
-	let cellIsClicked = false;
-
-	if (event.type.startsWith("mouse")) {
-		targetElement = event.target;
-		cellIsClicked = targetElement.classList.contains("cell") && clicked;
-	} else {
-		const rect = gridContainer.getBoundingClientRect();
-		const x = event.touches[0].clientX - rect.left;
-		const y = event.touches[0].clientY - rect.top;
-		targetElement = document.elementFromPoint(x, y);
-		cellIsClicked = targetElement.classList.contains("cell");
-	}
+	const target = event.target;
+	const cellIsClicked = target.classList.contains("cell") && clicked;
 
 	if (!cellIsClicked) return;
 
 	switch (true) {
-	case rainbowMode:
-		setRainbowMode(targetElement);
-		break;
-	case shadingMode:
-		setShadingMode(targetElement);
-		break;
-	case eraseMode:
-		setEraseMode(targetElement);
-		break;
-	default:
-		targetElement.style.backgroundColor = penClr;
+		case rainbowMode:
+			setRainbowMode(target);
+			break;
+		case shadingMode:
+			setShadingMode(target);
+			break;
+		case eraseMode:
+			setEraseMode(target);
+			break;
+		default:
+			target.style.backgroundColor = penClr;
 	}
 }
-// 	const target = event.target;
-// 	const cellIsClicked = target.classList.contains("cell") && clicked;
-
-// 	if (!cellIsClicked) return;
-
-// 	switch (true) {
-// 		case rainbowMode:
-// 			setRainbowMode(target);
-// 			break;
-// 		case shadingMode:
-// 			setShadingMode(target);
-// 			break;
-// 		case eraseMode:
-// 			setEraseMode(target);
-// 			break;
-// 		default:
-// 			target.style.backgroundColor = penClr;
-// 	}
-// }
 
 function setShadingMode(target) {
 	target.style.backgroundColor = penClr;
