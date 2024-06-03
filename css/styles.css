@@ -9,19 +9,6 @@
     --bg-clr: #1e2124;
     --ftr-clr: #7289da;
     --sb-clr: #424549;
-    /* an attempt to make an animated button */
-    /* --conic-gradient: conic-gradient(
-        from var(--gradient-angle),
-        #ff2e2e,
-        #ff831e,
-        #fcff51,
-        #58ff57,
-        #575fff,
-        #d257ff,
-        #ff57e5,
-        #ff1556
-
-    ); */
 }
 
 
@@ -123,11 +110,14 @@ footer {
 #shading,
 #eraser,
 #clear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
     padding: .7em 2.5em;
     background-color: var(--bg-clr);
     color: white;
     border-radius: 1em;
-    position: relative;
     flex-grow: 0;
     cursor: pointer;
     font-family: inherit;
@@ -141,6 +131,21 @@ footer {
     border: 1px solid var(--ftr-clr);
 }
 
+#rainbow::before {
+    content: "🌈";
+}
+
+#shading::before {
+    content: "🕶";
+}
+
+#eraser::before {
+    content: "🧽";
+}
+
+#clear::before {
+    content: "🧹";
+}
 
 #grid-size {
     accent-color: var(--ftr-clr);
