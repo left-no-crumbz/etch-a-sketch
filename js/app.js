@@ -7,6 +7,7 @@ const rainbowBtn = document.querySelector("#rainbow");
 const shadingBtn = document.querySelector("#shading");
 const eraseBtn = document.querySelector("#eraser");
 const sidebar = document.querySelector(".sidebar");
+const bytes = new Uint32Array(1);
 
 let penClr = penClrPicker.value;
 let rainbowMode = false;
@@ -91,26 +92,46 @@ gridContainer.addEventListener("mouseup", () => {clicked = false;});
 
 function draw(event) {
     const target = event.target;
-
     let cellIsClicked = target.classList.contains("cell") && clicked;
-    // TODO: clean this up
-    if (cellIsClicked && !rainbowMode && !shadingMode && !eraseMode){
-        target.style.backgroundColor = penClr;
-    } else if(cellIsClicked && rainbowMode) {
-        let r = Math.floor(Math.random() * 256);
-        let g = Math.floor(Math.random() * 256);
-        let b = Math.floor(Math.random() * 256);
-        target.style.backgroundColor = `rgb(${r},${g},${b})`;
-    } else if (cellIsClicked && shadingMode && !rainbowMode && !eraseMode){
-        target.style.backgroundColor = penClr;
-        if (target.style.opacity >= 0.1) {
-            target.style.opacity = +target.style.opacity + 0.1;
-        } else {
-            target.style.opacity = 0.1;
-        }
-    } else if (cellIsClicked && eraseMode && !rainbowMode && !shadingMode){
-        target.style.opacity = "1";
-        target.style.backgroundColor = "white";
-    }
 
+    if(!cellIsClicked) return;
+
+    switch(true){
+        case rainbowMode:
+            target.style.backgroundColor = generateRGBValue();
+            break;
+        case shadingMode:
+            setShadingMode(target);
+            break;
+        case eraseMode:
+            setEraseMode(target);
+            break;
+        default:
+            target.style.backgroundColor = penClr;
+    }
+}
+
+function setShadingMode(target) {
+    target.style.backgroundColor = penClr;
+    if (target.style.opacity >= 0.1) {
+        target.style.opacity = +target.style.opacity + 0.1;
+    } else {
+        target.style.opacity = 0.1;
+    }
+}
+
+function setEraseMode(target){
+    target.style.opacity = "1";
+    target.style.backgroundColor = "white";
+}
+function generateRGBValue(){
+    window.crypto.getRandomValues(bytes);
+    const randomValue = bytes[0];
+    console.log(randomValue);
+    // use bit shifting to reduce compute;
+    const r = randomValue & 0xFF;
+    const g = (randomValue >> 8) & 0xFF;
+    const b = (randomValue >> 16) & 0xFF;
+
+    return `rgb(${r}, ${g}, ${b})`;
 }
